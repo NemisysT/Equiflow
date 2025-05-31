@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -9,23 +9,10 @@ import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Switch } from "@/components/ui/switch"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {
-  Github,
-  ArrowRight,
-  TrendingUp,
-  Users,
-  Vote,
-  Clock,
-  CheckCircle,
-  Menu,
-  X,
-  Zap,
-  Globe,
-  Activity,
-} from "lucide-react"
+import { Github, ArrowRight, TrendingUp, Users, Vote, Clock, CheckCircle, Zap, Globe, Activity } from "lucide-react"
 import { PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Area, AreaChart } from "recharts"
 import Link from "next/link"
-import Beams from "@/components/ui/beams"
+import Beams from "@/components/Beams/Beams"
 
 // Mock data
 const contributors = [
@@ -128,101 +115,20 @@ export default function EquiflowUI() {
 
   if (currentView === "landing") {
     return (
-      <div className="min-h-screen bg-black text-white overflow-hidden">
-        {/* Animated Background */}
-        <div className="fixed inset-0 opacity-30">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900" />
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-                               linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)`,
-              backgroundSize: "50px 50px",
-            }}
-            animate={{
-              backgroundPosition: ["0px 0px", "50px 50px"],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
+      <div className="min-h-screen bg-black text-white overflow-hidden relative">
+        {/* Custom Background with Beams - Full Page */}
+        <div style={{ width: "100%", height: "100%", position: "fixed", top: 0, left: 0, zIndex: 0 }}>
+          <Beams
+            beamWidth={2}
+            beamHeight={15}
+            beamNumber={12}
+            lightColor="#ffffff"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={0}
           />
         </div>
-
-        {/* Header */}
-        <motion.header
-          className="relative z-10 border-b border-slate-800/50 bg-black/80 backdrop-blur-sm"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="container mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.02 }}>
-                <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-violet-500 rounded-lg flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-black" />
-                </div>
-                <span className="text-xl font-bold">Equiflow</span>
-              </motion.div>
-
-              <nav className="hidden md:flex items-center space-x-8">
-                <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                  Features
-                </a>
-                <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                  Docs
-                </a>
-                <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                  Community
-                </a>
-                <Button
-                  variant="outline"
-                  className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
-                  onClick={() => setCurrentView("dashboard")}
-                >
-                  Launch App
-                </Button>
-              </nav>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                className="md:hidden"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </Button>
-            </div>
-          </div>
-        </motion.header>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              className="fixed inset-x-0 top-16 z-50 bg-black/95 backdrop-blur-sm border-b border-slate-800"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <div className="container mx-auto px-6 py-4 space-y-4">
-                <a href="#" className="block text-slate-300 hover:text-white transition-colors">
-                  Features
-                </a>
-                <a href="#" className="block text-slate-300 hover:text-white transition-colors">
-                  Docs
-                </a>
-                <a href="#" className="block text-slate-300 hover:text-white transition-colors">
-                  Community
-                </a>
-                <Button className="w-full bg-cyan-500 hover:bg-cyan-600" onClick={() => setCurrentView("dashboard")}>
-                  Launch App
-                </Button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Hero Section */}
         <section className="relative z-10 container mx-auto px-6 py-20 text-center">
