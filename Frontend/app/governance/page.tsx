@@ -38,6 +38,11 @@ const cardVariants = {
 	show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
+
+
+
+
+
 export default function GovernancePage() {
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-[#1a1333] via-[#2d1a4d] to-[#1e293b] relative overflow-hidden">
