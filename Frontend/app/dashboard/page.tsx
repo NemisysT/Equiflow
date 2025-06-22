@@ -93,14 +93,7 @@ export default function DashboardPage() {
 				</div>
 			</div>
 			{/* 
-      @keyframes gradient-move {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-      }
-      .animate-gradient-move {
-        background-size: 200% 200%;
-        animation: gradient-move 8s ease-in-out infinite;
-      }
+      
       */}
 		</div>
 	)
