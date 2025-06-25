@@ -5,12 +5,6 @@ import EquityChart from "@/components/dashboard/equity-chart"
 import ContributorCard from "@/components/dashboard/contributor-card"
 import ActivityStream from "@/components/dashboard/activity-stream"
 
-
-
-
-
-
-
 const contributors = [
 	{
 		id: 1,
